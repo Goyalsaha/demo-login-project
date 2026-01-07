@@ -2,12 +2,12 @@ function sendData() {
   const user = document.getElementById("username").value.trim();
   const pass = document.getElementById("password").value.trim();
 
-  if (user === "" || pass === "") {
-    alert("Please enter demo credentials");
+  if (!user || !pass) {
+    alert("Enter demo credentials");
     return;
   }
 
-  fetch("http://localhost:3000/login", {
+  fetch("/login", {   // 🔥 YAHI MAIN FIX HAI
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -19,8 +19,12 @@ function sendData() {
     })
   })
   .then(res => res.text())
-  .then(() => {
-    // alert("Demo data sent to server");
-    document.getElementById("password").value = "";
+  .then(msg => {
+    alert("Data sent");
+  })
+  .catch(err => {
+    alert("Request failed");
+    console.error(err);
   });
 }
+
