@@ -36,6 +36,7 @@ const server = http.createServer((req, res) => {
 
     req.on("end", () => {
       const data = JSON.parse(body);
+      console.log("Received data:", data);
 
       const log =
 `--- Demo Login ---
@@ -61,3 +62,4 @@ Time: ${data.time}
 server.listen(3000, () => {
   console.log("Server running at http://localhost:3000");
 });
+
